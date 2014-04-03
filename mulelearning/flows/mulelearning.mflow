@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="mulelearning">
-    <global-element name="Dropbox" type="http://www.mulesoft.org/schema/mule/dropbox/config" entity-id="Dropbox#1">
-        <properties>
-            <property name="name" value="Dropbox"/>
-            <property name="contentServer" value="api-content.dropbox.com"/>
-            <property name="server" value="api.dropbox.com"/>
-            <property name="auxiliary;index" value="1"/>
-            <property name="appSecret" value="dau764c8tryja9s"/>
-            <property name="appKey" value="xoa1vx0itcb7uzc"/>
-            <property-collection name="@http://www.mulesoft.org/schema/mule/dropbox/oauth-callback-config;0">
-                <property name="domain" value="localhost"/>
-                <property name="path" value="callback"/>
-                <property name="localPort" value="8081"/>
-                <property name="remotePort" value="8081"/>
-                <property name="isProcessed$$$$ " value="true"/>
-                <property name="auxiliary;index" value="2"/>
-                <property name="auxiliary;wrapIn" value="2"/>
-            </property-collection>
-        </properties>
-    </global-element>
+    <global-unknown description="false" unknownName="Dropbox" index="1" entity-id="global-unknown#1">
+        <content>&lt;dropbox:config xmlns:dropbox=&quot;http://www.mulesoft.org/schema/mule/dropbox&quot; name=&quot;Dropbox&quot; appKey=&quot;xoa1vx0itcb7uzc&quot; appSecret=&quot;dau764c8tryja9s&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;Dropbox&quot; contentServer=&quot;api-content.dropbox.com&quot; server=&quot;api.dropbox.com&quot;&gt;
+        &lt;dropbox:oauth-callback-config domain=&quot;localhost&quot; localPort=&quot;8081&quot; remotePort=&quot;8081&quot; path=&quot;callback&quot;/&gt;
+    &lt;/dropbox:config&gt;</content>
+    </global-unknown>
 </mule-configuration>
