@@ -1,0 +1,21 @@
+High Priority Things to Figure Out:
+==================================
+
+1. Deploying to stand-alone server - Done. Simply export to zip and drop into the Mule Apps folder.
+2. Read message XML details into variables
+3. Invoke LC via EJB
+4. Catching and handling exceptions in Mule
+5. Manually building up XML in a Mule Flow
+6. Using Maven with Mule
+
+
+
+Stuff to figure out later
+=========================
+Deploying within JEE Container
+
+
+Useful Links
+============
+http://www.mulesoft.org/documentation/display/current/Application+Deployment
+http://blogs.mulesoft.org/mule-school-jms-tutorial/

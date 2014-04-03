@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="xpathprocessing">
+    <flow SubFlow="false" name="xpathprocessingFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b0375570-2b04-4963-a6c8-b54b0e0b26fc">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="1"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="Pickup File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="reverseOrder"/>
+                    <property name="moveToPattern"/>
+                    <property name="pollingFrequency"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="comparator"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="moveToDirectory" value="/home/greg/MuleWatchedFolders/XpathProcessing/Processed"/>
+                    <property name="address"/>
+                    <property name="fileAge"/>
+                    <property name="encoding"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/XpathProcessing/Input"/>
+                    <property name="outputPattern"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="mimeType"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="connector-ref"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/file/filename-regex-filter;0">
+                        <property name="pattern" value="test.xml"/>
+                        <property name="caseSensitive" value="true"/>
+                        <property name="isProcessed$$$$ " value="true"/>
+                        <property name="auxiliary;wrapIn" value="3"/>
+                        <property name="auxiliary;index" value="3"/>
+                    </property-collection>
+                </properties>
+            </endpoint>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message"/>
+                    <property name="category"/>
+                    <property name="level" value="INFO"/>
+                    <property name="auxiliary;index" value="4"/>
+                </properties>
+            </pattern>
+            <pattern name="DOM to XML" type="http://www.mulesoft.org/schema/mule/xml/dom-to-xml-transformer" entity-id="DOM to XML#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="outputEncoding" value="UTF-8"/>
+                    <property name="mimeType"/>
+                    <property name="auxiliary;index" value="5"/>
+                </properties>
+            </pattern>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message"/>
+                    <property name="category"/>
+                    <property name="level" value="INFO"/>
+                    <property name="auxiliary;index" value="6"/>
+                </properties>
+            </pattern>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[xpath('/test/name').text]"/>
+                    <property name="auxiliary;index" value="7"/>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern name="Flow Reference" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="c92085ba-f1d5-4c5c-85cd-4d875553665f">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name="name" value="xpathprocessingFlow2"/>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#3">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message" value="Here is the final result"/>
+                    <property name="category"/>
+                    <property name="level" value="TRACE"/>
+                    <property name="auxiliary;index" value="8"/>
+                </properties>
+            </pattern>
+            <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="reverseOrder"/>
+                    <property name="moveToPattern"/>
+                    <property name="pollingFrequency"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="comparator"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="moveToDirectory"/>
+                    <property name="address"/>
+                    <property name="fileAge"/>
+                    <property name="encoding"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/XpathProcessing/Output"/>
+                    <property name="outputPattern" value="result.txt"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="mimeType"/>
+                    <property name="auxiliary;index" value="9"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="70302963-9f87-490d-a99a-42ed9b8ff88e">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="updated"/>
+                    <property name="address" value=""/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="encoding" value=""/>
+                    <property name="path" value="qwer"/>
+                    <property name="responseTransformer-refs" value=""/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value=""/>
+                    <property name="auxiliary;erased;responseTimeout" value="true"/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+        </lane>
+    </flow>
+    <flow SubFlow="true" name="xpathprocessingFlow3" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="80d59531-e2aa-40dd-8fc7-f081693373d5">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="29a5e5e2-4f4e-4cdf-a719-a6f1ba0be7e3">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <scope name="Cache" type="http://www.mulesoft.org/schema/mule/ee/core/cache" entity-id="82f0b949-9eff-4d83-99af-fef30b583cc8">
+                <compartment entity-id="bc2ecd52-b7a0-4871-a57a-10caf6e1d672"/>
+            </scope>
+            <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="JMS" type="http://www.mulesoft.org/schema/mule/jms/endpoint" entity-id="38b92013-106f-4c2c-b9ef-0689b6f950a8">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="exchange-pattern" value="one-way"/>
+                </properties>
+            </endpoint>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="xpathprocessingFlow2" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ca5c6fcf-0136-4609-9d91-06463587b738">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="324e4d94-b3ae-486d-8660-81554e7bbcbe">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+        </lane>
+    </flow>
+</mule-configuration>

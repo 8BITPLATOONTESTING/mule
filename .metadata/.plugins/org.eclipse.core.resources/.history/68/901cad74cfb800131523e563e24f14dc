@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="asdf">
+    <flow SubFlow="false" name="asdfFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="00beb0f3-593e-4973-aba9-0ab89ba6c040">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="fb9e3b47-a62f-430e-bdb9-6af263ce7c5e">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="FTP" type="http://www.mulesoft.org/schema/mule/ftp/endpoint" entity-id="a371f9b3-31a0-4270-95a2-8d15e3a6a316">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="exchange-pattern" value="one-way"/>
+                </properties>
+            </endpoint>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

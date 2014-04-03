@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="subflows">
+    <flow SubFlow="false" name="subflowsFlow2" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cc16b364-53b2-4423-8282-a98a8badaf21">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="065b98c4-0d15-4094-b6df-2974c85ae429">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/https/endpoint" entity-id="71d2a958-5799-45c2-81e5-26886242d7fa">
+                <graphicalData x="21" y="33" width="68" height="173"/>
+                <properties>
+                    <property name="auxiliary;erased;contentType" value="true"/>
+                    <property name="port" value="8081"/>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="host" value="localhost"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                    <property name="keep-alive" value="false"/>
+                    <property name="contentType" value=""/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="password" value=""/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="httpLabel" value=""/>
+                    <property name="address" value=""/>
+                    <property name="updated"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="subflows"/>
+                    <property name="encoding" value=""/>
+                    <property name="responseTransformer-refs" value=""/>
+                    <property name="user" value=""/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <scope name="Cache" type="http://www.mulesoft.org/schema/mule/ee/core/cache" entity-id="3ee0c767-b2cd-4b44-a0c6-b5e2c5ff5dff">
+                <compartment entity-id="c70c3de3-6b01-4ebe-9b14-58ad7cf3b4c4"/>
+            </scope>
+            <pattern name="File to String" type="http://www.mulesoft.org/schema/mule/file/file-to-string-transformer" entity-id="bcd7ce5e-e7c0-4029-aa27-8b976455c899"/>
+            <pattern name="Echo" type="http://www.mulesoft.org/schema/mule/core/echo-component" entity-id="41afc4a4-64e2-4782-a5e2-c16cf46e7ead">
+                <graphicalData x="149" y="33" width="68" height="71"/>
+                <description></description>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="subflowsFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d0ffe7cf-0818-4282-a162-8aaf335fb97e">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="9217e3b7-b855-4743-ad50-6c17ae1c5588">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="Get File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="4d44b437-97a8-403c-ab17-801a8189ad66">
+                <graphicalData x="21" y="110" width="68" height="71"/>
+                <properties>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="reverseOrder" value="false"/>
+                    <property name="moveToPattern" value=""/>
+                    <property name="pollingFrequency" value="1000"/>
+                    <property name="comparator" value=""/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="updated"/>
+                    <property name="moveToDirectory" value=""/>
+                    <property name="address" value=""/>
+                    <property name="fileAge" value="500"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/SubFlows/Input"/>
+                    <property name="encoding" value=""/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern name="Flow Reference" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="ea552a32-a459-4dc6-a530-ce3c48d65b75">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name="name" value="Concat"/>
+                </properties>
+                <description></description>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="Concat" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="aeba2877-688d-4767-98ea-71dea8a4e385">
+        <properties>
+            <property name="processingStrategy2" value=""/>
+            <property name="initialState" value=""/>
+            <property name="auxiliary;erased;initialState" value="true"/>
+            <property name="auxiliary;erased;processingStrategy2" value="true"/>
+            <property name="updated"/>
+        </properties>
+        <description></description>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="cb9c6e90-4c4e-4a40-b521-982731bb9053">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Expression" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="f99d71b8-c0ad-414c-8169-57ee6adb215b">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="expression" value="message.payload =  #[xpath('/test/name').text]"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </pattern>
+        </lane>
+    </flow>
+</mule-configuration>

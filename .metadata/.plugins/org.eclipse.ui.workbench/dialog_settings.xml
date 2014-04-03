@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="86" key="DIALOG_Y_ORIGIN"/>
+		<item value="487" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.mule.tooling.ui.muleToolingExampleWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.mule.tooling.ui.muleWizards"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.mule.tooling.ui.muleExportWizard" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.mule.tooling.ui.muleExportCategory"/>
+		</list>
+	</section>
+</section>

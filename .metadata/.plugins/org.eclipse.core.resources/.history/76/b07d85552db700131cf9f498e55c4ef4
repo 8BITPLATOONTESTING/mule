@@ -1,0 +1,11 @@
+High Priority Things to Figure Out:
+==================================
+
+1. Deploying to stand-alone server - Done. Simply export to zip and drop into the Mule Apps folder.
+2. Read message XML details into variables
+
+
+
+Stuff to figure out later
+=========================
+Deploying within JEE Container

@@ -1,0 +1,10 @@
+INDEX VERSION 1.126+/home/greg/MuleStudio/workspace/.metadata/.plugins/org.eclipse.jdt.core
+624796863.index
+4007024545.index
+2446996067.index
+3589935275.index
+3765020915.index
+2303253122.index
+588054284.index
+2540607589.index
+3230264271.index

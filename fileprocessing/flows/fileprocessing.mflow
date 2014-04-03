@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="fileprocessing">
+    <flow SubFlow="false" name="fileprocessingFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a533bc4a-da4f-4ed6-be96-0b7771ab3148">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="1"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#1">
+                <properties>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/FileProcessing/Input"/>
+                    <property name="outputPattern"/>
+                    <property name="moveToPattern"/>
+                    <property name="moveToDirectory" value="/home/greg/MuleWatchedFolders/FileProcessing/Processed"/>
+                    <property name="pollingFrequency"/>
+                    <property name="fileAge"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="comparator"/>
+                    <property name="reverseOrder"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/file/filename-regex-filter;0">
+                        <property name="pattern" value="test.xml"/>
+                        <property name="caseSensitive" value="true"/>
+                        <property name="auxiliary;wrapIn" value="3"/>
+                        <property name="auxiliary;index" value="3"/>
+                    </property-collection>
+                </properties>
+            </endpoint>
+            <pattern name="Echo" type="org.mule.tooling.ui.modules.core.pattern.echo" entity-id="Echo#1">
+                <properties>
+                    <property name="auxiliary;index" value="4"/>
+                </properties>
+            </pattern>
+            <pattern name="DOM to XML" type="http://www.mulesoft.org/schema/mule/xml/dom-to-xml-transformer" entity-id="DOM to XML#1">
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="mimeType"/>
+                    <property name="outputEncoding" value="UTF-8"/>
+                    <property name="auxiliary;index" value="5"/>
+                </properties>
+            </pattern>
+            <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Write File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#2">
+                <properties>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/FileProcessing/Output"/>
+                    <property name="outputPattern" value="output.xml"/>
+                    <property name="moveToPattern"/>
+                    <property name="moveToDirectory"/>
+                    <property name="pollingFrequency"/>
+                    <property name="fileAge"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="comparator"/>
+                    <property name="reverseOrder"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="auxiliary;index" value="6"/>
+                </properties>
+            </endpoint>
+        </lane>
+    </flow>
+</mule-configuration>

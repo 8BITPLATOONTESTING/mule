@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="subflows">
+    <flow SubFlow="false" name="MasterFlow" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f68aca45-3fc2-4273-a9a2-c9986c8bbde5">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="1"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="port" value="8081"/>
+                    <property name="host" value="localhost"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="followRedirects"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                    <property name="keep-alive"/>
+                    <property name="contentType"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="password"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="httpLabel"/>
+                    <property name="transformer-refs"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="path" value="subflows"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="method"/>
+                    <property name="user"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <splitter index="3" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name=";INDEX" value="3"/>
+                    <property-collection name="4e377ad3-ae37-45b3-a69a-133d7b831081">
+                        <property name="choice.otherwise" value="true"/>
+                        <property name="choice.expression" value=""/>
+                        <property-collection name="choice.attributes"/>
+                    </property-collection>
+                    <property-collection name="27320e0a-92f9-447e-96fc-0591ac80617e">
+                        <property name="choice.expression" value="#[payload.contains('1')]"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value=""/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="39474b91-d02d-4c40-9f42-ae985fb28336">
+                        <property name="choice.expression" value="#[payload.contains('2')]"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="#[payload.contains('2')]"/>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2">
+                    <properties>
+                        <property name="updated"/>
+                        <property name=";INDEX" value="3"/>
+                        <property-collection name="4e377ad3-ae37-45b3-a69a-133d7b831081">
+                            <property name="choice.otherwise" value="true"/>
+                            <property name="choice.expression" value=""/>
+                            <property-collection name="choice.attributes"/>
+                        </property-collection>
+                        <property-collection name="27320e0a-92f9-447e-96fc-0591ac80617e">
+                            <property name="choice.expression" value="#[payload.contains('1')]"/>
+                            <property-collection name="choice.attributes">
+<property name="expression" value=""/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="39474b91-d02d-4c40-9f42-ae985fb28336">
+                            <property name="choice.expression" value="#[payload.contains('2')]"/>
+                            <property-collection name="choice.attributes">
+<property name="expression" value="#[payload.contains('2')]"/>
+                            </property-collection>
+                        </property-collection>
+                    </properties>
+                </pattern>
+                <compartment entity-id="compartment#1">
+                    <lane hadOnlyOneElement="false" index="7" isChoiceOtherwiseLane="false" entity-id="39474b91-d02d-4c40-9f42-ae985fb28336">
+                        <pattern name="Set Payload 2" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="value" value="Subflow 2 called"/>
+<property name="auxiliary;index" value="7"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="9" isChoiceOtherwiseLane="false" entity-id="27320e0a-92f9-447e-96fc-0591ac80617e">
+                        <pattern name="Flow Reference 1" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="name" value="SubFlow1"/>
+<property name="auxiliary;index" value="9"/>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="11" isChoiceOtherwiseLane="true" entity-id="4e377ad3-ae37-45b3-a69a-133d7b831081">
+                        <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#3">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="value" value="Please use subflows?id=X"/>
+<property name="auxiliary;index" value="11"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="SubFlow2" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="03edb50b-3e5b-4075-9db7-8cc3b978ce5b">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="12"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#4">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="Sub Flow 2 called"/>
+                    <property name="auxiliary;index" value="13"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="SubFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7042d47c-4300-46b1-9e94-13cbcee9ab97">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="14"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#5">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="SubFlow 1 Called"/>
+                    <property name="auxiliary;index" value="15"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+</mule-configuration>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="filetojms">
+    <global-element name="Active MQ" type="http://www.mulesoft.org/schema/mule/jms/activemq-xa-connector" entity-id="!!!fabf088e-467d-4499-9ece-afa3dc5fd93c">
+        <properties>
+            <property name="jndiProviderUrl" value=""/>
+            <property name="redeliveryHandlerFactory-ref" value=""/>
+            <property name="embeddedMode" value="false"/>
+            <property name="durable" value="false"/>
+            <property name="connectionFactory-ref" value=""/>
+            <property name="maxRedelivery" value="-1"/>
+            <property name="password" value=""/>
+            <property name="username" value=""/>
+            <property name="name" value="Active_MQ"/>
+            <property name="dynamicNotification" value="false"/>
+            <property name="noLocal" value="false"/>
+            <property name="eagerConsumer" value="false"/>
+            <property name="numberOfConsumers" value="1"/>
+            <property name="acknowledgementMode" value="AUTO_ACKNOWLEDGE"/>
+            <property name="jndiInitialFactory" value=""/>
+            <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/jms/activemq-connector"/>
+            <property name="validateConnections" value="true"/>
+            <property name="disableTemporaryReplyToDestinations" value="false"/>
+            <property name="clientId" value=""/>
+            <property name="dispatcherPoolFactory-ref" value=""/>
+            <property name="persistentDelivery" value="false"/>
+            <property name="forceJndiDestinations" value="false"/>
+            <property name="brokerURL" value="tcp://localhost:61616"/>
+            <property name="connectionFactoryJndiName" value=""/>
+            <property name="specification" value="1.0.2b"/>
+            <property name="jndiDestinations" value="false"/>
+            <property name="honorQosHeaders" value="false"/>
+            <property name="cacheJmsSessions" value="false"/>
+            <property name="jndiProviderProperties-ref" value=""/>
+            <property-collection name="">
+                <property name="blocking" value="true"/>
+                <property name="d" value=""/>
+                <property name="customReconnection" value="false"/>
+                <property name="count" value="2"/>
+                <property name="standardReconnection" value="false"/>
+                <property name="class" value=""/>
+                <property name="frequency" value="2000"/>
+                <property name="reconnectForever" value="false"/>
+                <property name="noReconnection" value="true"/>
+            </property-collection>
+        </properties>
+        <description></description>
+    </global-element>
+    <flow SubFlow="false" name="filetojmsFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cfaac8ee-bd0e-4c99-ac2e-1948ca9e0384">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="1"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="ReadFile" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="reverseOrder"/>
+                    <property name="moveToPattern"/>
+                    <property name="pollingFrequency"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="comparator"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="moveToDirectory" value="/home/greg/MuleWatchedFolders/ActiveMQ/Processed"/>
+                    <property name="address"/>
+                    <property name="fileAge"/>
+                    <property name="path" value="/home/greg/MuleWatchedFolders/ActiveMQ/Input"/>
+                    <property name="encoding"/>
+                    <property name="outputPattern"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="connector-ref"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/file/filename-regex-filter;0">
+                        <property name="pattern" value="test.xml"/>
+                        <property name="caseSensitive" value="true"/>
+                        <property name="isProcessed$$$$ " value="true"/>
+                        <property name="auxiliary;index" value="3"/>
+                        <property name="auxiliary;wrapIn" value="3"/>
+                    </property-collection>
+                </properties>
+            </endpoint>
+            <pattern name="DOM to XML" type="http://www.mulesoft.org/schema/mule/xml/dom-to-xml-transformer" entity-id="DOM to XML#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="outputEncoding" value="UTF-8"/>
+                    <property name="auxiliary;index" value="4"/>
+                    <property name="mimeType"/>
+                </properties>
+            </pattern>
+            <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="JMS" type="http://www.mulesoft.org/schema/mule/jms/endpoint" entity-id="JMS#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="topic"/>
+                    <property name="queue"/>
+                    <property name="durableName"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="disableTemporaryReplyToDestinations"/>
+                    <property name="exchange-pattern"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>
